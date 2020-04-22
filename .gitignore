@@ -1,0 +1,4 @@
+*.md
+.idea/
+out/
+*.iml

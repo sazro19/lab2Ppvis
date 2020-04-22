@@ -29,23 +29,23 @@ public class TableElement {
                                     curPetObsList;
 
     public TableElement(List<Pet> petList){
-        final int    TABLE_HEIGHT                 = 450,
-                     TABLE_WIDTH                  = 1000,
-                     DEFAULT_ROWS_ON_PAGE_NUMBER  = 17;
-        final String PET_NAME_LABEL_TEXT           = "Имя питомца",
-                     PET_BIRTHDAY_LABEL_TEXT       = "Дата рождения",
-                     PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего приёма",
-                     SNP_COLUMN_LABEL_TEXT         = "ФИО ветеринара",
-                     DIAGNOSIS_COLUMN_LABEL_TEXT      = "Диагноз",
-                     ROWS_ON_PAGE_LABEL_TEXT      = "Строчек на странице ",
-                     TO_BEGIN_BUTTON_LABEL_TEXT   = "<<",
-                     TO_LEFT_BUTTON_LABEL_TEXT    = "<",
-                     TO_RIGHT_BUTTON_LABEL_TEXT   = ">",
-                     TO_END_BUTTON_LABEL_TEXT     = ">>";
-        Button    toBeginButton   = new Button(TO_BEGIN_BUTTON_LABEL_TEXT),
-                  toLeftButton    = new Button(TO_LEFT_BUTTON_LABEL_TEXT),
-                  toRightButton   = new Button(TO_RIGHT_BUTTON_LABEL_TEXT),
-                  toEndButton     = new Button(TO_END_BUTTON_LABEL_TEXT);
+        final int TABLE_HEIGHT = 450;
+        final int TABLE_WIDTH = 1000;
+        final int DEFAULT_ROWS_ON_PAGE_NUMBER = 17;
+        final String PET_NAME_LABEL_TEXT = "Имя питомца";
+        final String PET_BIRTHDAY_LABEL_TEXT = "Дата рождения";
+        final String PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего приёма";
+        final String SNP_COLUMN_LABEL_TEXT = "ФИО ветеринара";
+        final String DIAGNOSIS_COLUMN_LABEL_TEXT = "Диагноз";
+        final String ROWS_ON_PAGE_LABEL_TEXT = "Строчек на странице ";
+        final String TO_BEGIN_BUTTON_LABEL_TEXT = "<<";
+        final String TO_LEFT_BUTTON_LABEL_TEXT = "<";
+        final String TO_RIGHT_BUTTON_LABEL_TEXT = ">";
+        final String TO_END_BUTTON_LABEL_TEXT = ">>";
+        Button toBeginButton = new Button(TO_BEGIN_BUTTON_LABEL_TEXT);
+        Button toLeftButton = new Button(TO_LEFT_BUTTON_LABEL_TEXT);
+        Button toRightButton = new Button(TO_RIGHT_BUTTON_LABEL_TEXT);
+        Button toEndButton = new Button(TO_END_BUTTON_LABEL_TEXT);
         TableColumn<Pet, String> petNameCol = new TableColumn<>(PET_NAME_LABEL_TEXT);
         TableColumn<Pet, LocalDate> petBirthdayCol = new TableColumn<>(PET_BIRTHDAY_LABEL_TEXT),
                                     petLastAppointmentCol = new TableColumn<>(PET_LAST_APPOINTMENT_LABEL_TEXT);
