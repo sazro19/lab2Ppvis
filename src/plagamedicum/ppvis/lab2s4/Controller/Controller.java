@@ -13,12 +13,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import plagamedicum.ppvis.lab2s4.model.FrazeChecker;
 import plagamedicum.ppvis.lab2s4.model.snpOfVeterinarian;
 import plagamedicum.ppvis.lab2s4.model.Pet;
 
 public class Controller {
     private Pet model;
-
+    private FrazeChecker frazeChecker;
     private DocOpener docOpener;
 
     public Controller(Pet model){
@@ -154,9 +155,10 @@ public class Controller {
                 }
                 break;
             case CRITERIA_3:
+                frazeChecker = new FrazeChecker();
                 final String  FRAZE   = criteriaListText.get(4);
                 for(Pet pet:petList) {
-                    if (pet.checkFrazeFromDiagnosis(pet.getDiagnosis(), FRAZE)) {
+                    if (frazeChecker.checkFrazeFromDiagnosis(pet.getDiagnosis(), FRAZE)) {
                         resultList.add(pet);
                     }
                 }
