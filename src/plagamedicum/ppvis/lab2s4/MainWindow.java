@@ -3,7 +3,7 @@ package plagamedicum.ppvis.lab2s4;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import plagamedicum.ppvis.lab2s4.Controller.Controller;
-import plagamedicum.ppvis.lab2s4.model.Model;
+import plagamedicum.ppvis.lab2s4.model.Pet;
 import plagamedicum.ppvis.lab2s4.view.View;
 
 public class MainWindow extends Application {
@@ -13,7 +13,7 @@ public class MainWindow extends Application {
 	
 	@Override
 	public void start(Stage mainStage) {
-		Model 	   model 	  = new Model();
+		Pet 	   model 	  = new Pet();
 		Controller controller = new Controller(model);
 		View view 	  = new View(controller);
 		

@@ -2,16 +2,19 @@ package plagamedicum.ppvis.lab2s4.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Pet {
+	private List<Pet> petList;
 	private String     petName;
 	private LocalDate  petBirthday;
 	private LocalDate  petLastAppointment;
-	private SNP 	   snp;
+	private snpOfVeterinarian snp;
 	private String     diagnosis;
 
-	public Pet(String petName, LocalDate petBirthday, LocalDate petLastAppointment, SNP snp, String diagnosis){
+	public Pet(String petName, LocalDate petBirthday, LocalDate petLastAppointment, snpOfVeterinarian snp, String diagnosis){
 		this.petName = petName;
 		this.petBirthday = petBirthday;
 		this.petLastAppointment = petLastAppointment;
@@ -19,7 +22,23 @@ public class Pet {
 		this.diagnosis = diagnosis;
 	}
 
-	public SNP getSnp(){
+	public Pet(){
+		petList = new ArrayList<>();
+	}
+
+	public List<Pet> getPetList(){
+		return petList;
+	}
+
+	public void setPetList(List<Pet> petList){
+		this.petList = petList;
+	}
+
+	public void addPet(Pet pet){
+		petList.add(pet);
+	}
+
+	public snpOfVeterinarian getSnp(){
 		return snp;
 	}
 
@@ -55,7 +74,7 @@ public class Pet {
 
 	public void setPetLastAppointment(LocalDate petLastAppointment) { this.petLastAppointment = petLastAppointment; }
 
-	public void setSnp(SNP snp){
+	public void setSnp(snpOfVeterinarian snp){
 		this.snp = snp;
 	}
 
@@ -64,7 +83,7 @@ public class Pet {
 	}
 
 	public void setAlignSnp(String alignSnp){
-		this.snp = new SNP(alignSnp);
+		this.snp = new snpOfVeterinarian(alignSnp);
 	}
 
 	public String getDiagnosis(){

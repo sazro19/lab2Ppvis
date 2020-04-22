@@ -13,16 +13,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import plagamedicum.ppvis.lab2s4.model.Model;
-import plagamedicum.ppvis.lab2s4.model.SNP;
+import plagamedicum.ppvis.lab2s4.model.snpOfVeterinarian;
 import plagamedicum.ppvis.lab2s4.model.Pet;
 
 public class Controller {
-    private Model model;
+    private Pet model;
 
     private DocOpener docOpener;
 
-    public Controller(Model model){
+    public Controller(Pet model){
         this.model = model;
     }
 
@@ -32,7 +31,7 @@ public class Controller {
 
     public void addPet(String petName, LocalDate petBirthday, LocalDate petLast, String surname, String name, String patronym, String diagnosis){
         model.addPet(
-                new Pet(petName, petBirthday, petLast, new SNP(surname, name, patronym), diagnosis)
+                new Pet(petName, petBirthday, petLast, new snpOfVeterinarian(surname, name, patronym), diagnosis)
         );
     }
 

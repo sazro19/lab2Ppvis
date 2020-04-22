@@ -3,7 +3,7 @@ package plagamedicum.ppvis.lab2s4.Controller;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import plagamedicum.ppvis.lab2s4.model.SNP;
+import plagamedicum.ppvis.lab2s4.model.snpOfVeterinarian;
 import plagamedicum.ppvis.lab2s4.model.Pet;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,7 +20,7 @@ public class DocOpener {
     private String        petName;
     private LocalDate     petBirthday;
     private LocalDate     petLastAppointment;
-    private SNP           snp;
+    private snpOfVeterinarian snp;
     private String        diagnosis;
     private List<Pet>     petList;
 
@@ -55,7 +55,7 @@ public class DocOpener {
                 petLastAppointment = LocalDate.parse(date, formatter);
             }
             if(qName.equals("snp")){
-                snp = new SNP(
+                snp = new snpOfVeterinarian(
                     attributes.getValue("surname"),
                     attributes.getValue("name"),
                     attributes.getValue("patronym")

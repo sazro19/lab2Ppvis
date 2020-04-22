@@ -1,11 +1,11 @@
 package plagamedicum.ppvis.lab2s4.model;
 
-public class SNP {
+public class snpOfVeterinarian {
     private String surname,
                    name,
                    patronym;
 
-    public SNP(String alignForm){
+    public snpOfVeterinarian(String alignForm){
         String[] splitForm = alignForm.split("\\s+");
         if(splitForm[0] != null){
             surname = splitForm[0];
@@ -24,7 +24,7 @@ public class SNP {
         }
     }
 
-    public SNP (String surname, String name, String patronym){
+    public snpOfVeterinarian(String surname, String name, String patronym){
         this.surname = surname;
         this.name = name;
         this.patronym = patronym;
