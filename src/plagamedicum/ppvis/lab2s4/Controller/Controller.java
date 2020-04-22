@@ -20,6 +20,8 @@ import plagamedicum.ppvis.lab2s4.model.Pet;
 public class Controller {
     private Model model;
 
+    private DocOpener docOpener;
+
     public Controller(Model model){
         this.model = model;
     }
@@ -35,8 +37,9 @@ public class Controller {
     }
 
     public void openDoc(File file) {
+        docOpener = new DocOpener();
         try {
-            model.setPetList(DocOpener.openDoc(file));
+            model.setPetList(docOpener.openDoc(file));
         } catch (Exception exception) {
             exception.printStackTrace();
         }

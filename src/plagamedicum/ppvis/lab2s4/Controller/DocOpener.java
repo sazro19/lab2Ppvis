@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocOpener {
-    private static String        petName;
-    private static LocalDate     petBirthday;
-    private static LocalDate     petLastAppointment;
-    private static SNP           snp;
-    private static String        diagnosis;
-    private static List<Pet>     petList;
+    private String        petName;
+    private LocalDate     petBirthday;
+    private LocalDate     petLastAppointment;
+    private SNP           snp;
+    private String        diagnosis;
+    private List<Pet>     petList;
 
-    public static List<Pet> openDoc (File file) throws ParserConfigurationException, SAXException, IOException {
+    public List<Pet> openDoc (File file) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory parserFactory;
         SAXParser parser;
         XMLHandler handler;
@@ -38,7 +38,7 @@ public class DocOpener {
         return petList;
     }
 
-    private static class XMLHandler extends DefaultHandler {
+    private class XMLHandler extends DefaultHandler {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException{
             if(qName.equals("petName")){
