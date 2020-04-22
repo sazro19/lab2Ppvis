@@ -126,15 +126,11 @@ public class Controller {
     }
 
     public List search(String selectedItem, List<String> criteriaListText, List<LocalDate> criteriaListDate){
-        final String  CRITERIA_1  = "Дата последнего приема и ФИО ветеринара",
-                      CRITERIA_2  = "Имя питомца и дата рождения",
-                      CRITERIA_3  = "По фразе из диагноза";
         List<Pet> petList = getPetList();
-        List          resultList;
-
+        List                resultList;
         resultList = new ArrayList<Pet>();
-
-        switch (selectedItem){
+        criteria criteriaForSelection = criteria.getCriteriaByName(selectedItem);
+        switch (criteriaForSelection){
             case CRITERIA_1:
                 final LocalDate LAST_APPOINTMENT = criteriaListDate.get(0);
                 final String SURNAME = criteriaListText.get(0),
@@ -167,7 +163,31 @@ public class Controller {
 
         return resultList;
     }
+    enum criteria {
+        CRITERIA_1("Дата последнего приема и ФИО ветеринара"),
+        CRITERIA_2("Имя питомца и дата рождения"),
+        CRITERIA_3("По фразе из диагноза");
+        private final String name;
 
+        criteria(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public static criteria getCriteriaByName(String name) {
+            criteria res = null;
+            for (criteria x : values()) {
+                // либо equalsIgnoreCase, на ваше усмотрение
+                if (x.getName().equals(name)) {
+                     res = x;
+                }
+            }
+            return res;
+        }
+    }
     public void delete(List<Pet> indexList){
         for(Pet pet:indexList){
             getPetList().remove(pet);
