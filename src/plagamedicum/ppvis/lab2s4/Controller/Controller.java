@@ -46,28 +46,28 @@ public class Controller {
     }
 
     public void saveDoc(File file) {
-        List<Pet>              petList = model.getPetList();
-        Element                pets,
-                               pet,
-                               petName,
-                               petBirthday,
-                               petLastAppointment,
-                               snp,
-                               diagnosis;
-        Attr                   petNameName,
-                               petBirthdayName,
-                               petLastAppointmentName,
-                               surname,
-                               name,
-                               patronym,
-                               diagnosisName;
-        Document               doc;
+        List<Pet> petList = model.getPetList();
+        Element pets;
+        Element pet;
+        Element petName;
+        Element petBirthday;
+        Element petLastAppointment;
+        Element snp;
+        Element diagnosis;
+        Attr petNameName;
+        Attr petBirthdayName;
+        Attr petLastAppointmentName;
+        Attr surname;
+        Attr name;
+        Attr patronym;
+        Attr diagnosisName;
+        Document doc;
         DocumentBuilderFactory docBuilderFactory;
-        DocumentBuilder        docBuilder;
-        TransformerFactory     transformerFactory;
-        Transformer            transformer;
-        DOMSource              source;
-        StreamResult           streamResult;
+        DocumentBuilder docBuilder;
+        TransformerFactory transformerFactory;
+        Transformer transformer;
+        DOMSource source;
+        StreamResult streamResult;
 
         try{
             docBuilderFactory = DocumentBuilderFactory.newInstance();
