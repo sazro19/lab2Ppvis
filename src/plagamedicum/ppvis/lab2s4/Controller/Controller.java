@@ -253,12 +253,7 @@ public class Controller {
 
         refreshPagination(petObsList);
     }
-
-    /*private void refreshPaginationLabel(ObservableList<Pet> petObsList){
-        numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
-        paginationLabel.setText(currentPage + "/" + numberOfPages);
-        itemsCountLabel.setText("/" + petObsList.size() + "/");
-    }*/
+    
     private void refreshPagination(ObservableList<Pet> petObsList){
         numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
         pagination = currentPage + "/" + numberOfPages;
