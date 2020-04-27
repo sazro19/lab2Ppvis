@@ -87,7 +87,7 @@ public class View {
                 searchItemsButton,
                 deleteItemsButton);
 
-        tableElement = new TableElement(controller.getPetList());
+        tableElement = new TableElement(controller.getPetList() , controller);
 
         root = new VBox();
         root.getChildren().addAll(

@@ -55,7 +55,7 @@ public class RequestElement {
         initCriteriaLists();
         grid              = new GridPane();
         switchPreset();
-        tableElement = new TableElement(new ArrayList<>());
+        tableElement = new TableElement(new ArrayList<>(), controller);
         this.root = new VBox();
         if(windowType == View.WindowType.SEARCH){
             criteriaChooser.getChildren().addAll(

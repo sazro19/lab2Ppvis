@@ -1,5 +1,6 @@
 package plagamedicum.ppvis.lab2s4.Controller;
 
+import javafx.collections.ObservableList;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -8,6 +9,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.awt.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,6 +23,11 @@ public class Controller {
     private Pet model;
     private FrazeChecker frazeChecker;
     private DocOpener docOpener;
+    private int rowsOnPage;
+    private int currentPage = 1;
+    private int numberOfPages;
+    String pagination;
+    String itemsCount;
 
     public Controller(Pet model){
         this.model = model;
@@ -184,7 +191,6 @@ public class Controller {
         public static criteria getCriteriaByName(String name) {
             criteria res = null;
             for (criteria x : values()) {
-                // либо equalsIgnoreCase, на ваше усмотрение
                 if (x.getName().equals(name)) {
                      res = x;
                 }
@@ -197,4 +203,72 @@ public class Controller {
             getPetList().remove(pet);
         }
     }
+
+    public void setRowsOnPage(String rowText, ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
+        rowsOnPage = Integer.parseInt(rowText);
+        currentPage = 1;
+
+        refreshPage(petObsList, curPetObsList);
+    }
+
+    public void goBegin(ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
+        currentPage = 1;
+        refreshPage(petObsList, curPetObsList);
+    }
+
+    public void goLeft(ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
+        if(currentPage > 1){
+            currentPage--;
+        }
+        refreshPage(petObsList, curPetObsList);
+    }
+
+    public void goRight(ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
+        if(currentPage < numberOfPages){
+            currentPage++;
+        }
+        refreshPage(petObsList, curPetObsList);
+    }
+
+    public void goEnd(ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
+        currentPage = numberOfPages;
+        refreshPage(petObsList, curPetObsList);
+    }
+
+    private void refreshPage(ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
+        int fromIndex = (currentPage - 1) * rowsOnPage,
+                toIndex   =  currentPage      * rowsOnPage;
+
+        if(toIndex > petObsList.size()){
+            toIndex = petObsList.size();
+        }
+
+        curPetObsList.clear();
+        curPetObsList.addAll(
+                petObsList.subList(
+                        fromIndex,
+                        toIndex
+                )
+        );
+
+        refreshPagination(petObsList);
+    }
+
+    /*private void refreshPaginationLabel(ObservableList<Pet> petObsList){
+        numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
+        paginationLabel.setText(currentPage + "/" + numberOfPages);
+        itemsCountLabel.setText("/" + petObsList.size() + "/");
+    }*/
+    private void refreshPagination(ObservableList<Pet> petObsList){
+        numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
+        pagination = currentPage + "/" + numberOfPages;
+        itemsCount = "/" + petObsList.size() + "/";
+    }
+    public String getPagination() {
+        return pagination;
+    }
+    public String getItemsCount() {
+        return itemsCount;
+    }
 }
+

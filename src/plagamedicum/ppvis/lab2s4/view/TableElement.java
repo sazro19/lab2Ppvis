@@ -10,14 +10,12 @@ import java.util.List;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import plagamedicum.ppvis.lab2s4.Controller.Controller;
 import plagamedicum.ppvis.lab2s4.model.Pet;
 
 public class TableElement {
-    private int                rowsOnPage,
-                               currentPage = 1,
-                               numberOfPages;
-    private Label              paginationLabel,
-                               itemsCountLabel;
+    private Label              paginationLabel;
+    private Label              itemsCountLabel;
     private Button             resetCountPages;
     private TextField          rowsOnPageField;
     private TableView<Pet>     table;
@@ -25,10 +23,12 @@ public class TableElement {
                                pagination;
     private Pane               tableElement;
     private List<Pet> defaultPetList;
-    private ObservableList<Pet> petObsList,
-                                    curPetObsList;
+    private ObservableList<Pet> petObsList;
+    private ObservableList<Pet> curPetObsList;
+    private Controller controller;
 
-    public TableElement(List<Pet> petList){
+
+    public TableElement(List<Pet> petList, Controller controller){
         final int TABLE_HEIGHT = 450;
         final int TABLE_WIDTH = 1000;
         final int DEFAULT_ROWS_ON_PAGE_NUMBER = 17;
@@ -42,6 +42,7 @@ public class TableElement {
         final String TO_LEFT_BUTTON_LABEL_TEXT = "<";
         final String TO_RIGHT_BUTTON_LABEL_TEXT = ">";
         final String TO_END_BUTTON_LABEL_TEXT = ">>";
+        this.controller = controller;
         Button toBeginButton = new Button(TO_BEGIN_BUTTON_LABEL_TEXT);
         Button toLeftButton = new Button(TO_LEFT_BUTTON_LABEL_TEXT);
         Button toRightButton = new Button(TO_RIGHT_BUTTON_LABEL_TEXT);
@@ -101,17 +102,31 @@ public class TableElement {
                 diagnosisCol
         );
         table.setItems(curPetObsList);
-        setRowsOnPage();
-
+        controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
         tableElement = new VBox();
         tableElement.getChildren().addAll(table,
                                           pagination);
 
-        resetCountPages.setOnAction(ae -> setRowsOnPage());
-        toBeginButton.setOnAction(ae -> goBegin());
-        toLeftButton.setOnAction(ae -> goLeft());
-        toRightButton.setOnAction(ae -> goRight());
-        toEndButton.setOnAction(ae -> goEnd());
+        resetCountPages.setOnAction(ae -> {controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
+                                           paginationLabel.setText(controller.getPagination());
+                                           itemsCountLabel.setText(controller.getItemsCount());
+        });
+        toBeginButton.setOnAction(ae -> {controller.goBegin(petObsList, curPetObsList);
+                                         paginationLabel.setText(controller.getPagination());
+                                         itemsCountLabel.setText(controller.getItemsCount());
+        });
+        toLeftButton.setOnAction(ae -> {controller.goLeft(petObsList, curPetObsList);
+                                        paginationLabel.setText(controller.getPagination());
+                                        itemsCountLabel.setText(controller.getItemsCount());
+        });
+        toRightButton.setOnAction(ae -> {controller.goRight(petObsList, curPetObsList);
+                                         paginationLabel.setText(controller.getPagination());
+                                         itemsCountLabel.setText(controller.getItemsCount());
+        });
+        toEndButton.setOnAction(ae -> {controller.goEnd(petObsList, curPetObsList);
+                                       paginationLabel.setText(controller.getPagination());
+                                       itemsCountLabel.setText(controller.getItemsCount());
+        });
     }
 
     public Pane get(){
@@ -128,13 +143,12 @@ public class TableElement {
 
     public void setObservableList(List<Pet> list){
         petObsList = FXCollections.observableArrayList(list);
-        setRowsOnPage();
+        controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
     }
 
-    private void setRowsOnPage(){
+    /*private void setRowsOnPage(){
         rowsOnPage = Integer.parseInt(rowsOnPageField.getText());
         currentPage = 1;
-
         refreshPage();
     }
 
@@ -185,5 +199,5 @@ public class TableElement {
         numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
         paginationLabel.setText(currentPage + "/" + numberOfPages);
         itemsCountLabel.setText("/" + petObsList.size() + "/");
-    }
+    }*/
 }
