@@ -14,49 +14,47 @@ import plagamedicum.ppvis.lab2s4.Controller.Controller;
 import plagamedicum.ppvis.lab2s4.model.Pet;
 
 public class TableElement {
-    private Label              paginationLabel;
-    private Label              itemsCountLabel;
-    private Button             resetCountPages;
-    private TextField          rowsOnPageField;
-    private TableView<Pet>     table;
-    private ToolBar            navigator,
-                               pagination;
-    private Pane               tableElement;
+    private Label paginationLabel;
+    private Label itemsCountLabel;
+    private Button resetCountPages;
+    private TextField rowsOnPageField;
+    private TableView<Pet> table;
+    private ToolBar navigator;
+    private ToolBar pagination;
+    private Pane tableElement;
     private List<Pet> defaultPetList;
     private ObservableList<Pet> petObsList;
     private ObservableList<Pet> curPetObsList;
     private Controller controller;
+    private final int TABLE_HEIGHT = 450;
+    private final int TABLE_WIDTH = 1000;
+    private final int DEFAULT_ROWS_ON_PAGE_NUMBER = 17;
+    private final String PET_NAME_LABEL_TEXT = "Имя питомца";
+    private final String PET_BIRTHDAY_LABEL_TEXT = "Дата рождения";
+    private final String PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего приёма";
+    private final String SNP_COLUMN_LABEL_TEXT = "ФИО ветеринара";
+    private final String DIAGNOSIS_COLUMN_LABEL_TEXT = "Диагноз";
+    private final String ROWS_ON_PAGE_LABEL_TEXT = "Строчек на странице ";
+    private final String TO_BEGIN_BUTTON_LABEL_TEXT = "<<";
+    private final String TO_LEFT_BUTTON_LABEL_TEXT = "<";
+    private final String TO_RIGHT_BUTTON_LABEL_TEXT = ">";
+    private final String TO_END_BUTTON_LABEL_TEXT = ">>";
+    private Button toBeginButton = new Button(TO_BEGIN_BUTTON_LABEL_TEXT);
+    private Button toLeftButton = new Button(TO_LEFT_BUTTON_LABEL_TEXT);
+    private Button toRightButton = new Button(TO_RIGHT_BUTTON_LABEL_TEXT);
+    private Button toEndButton = new Button(TO_END_BUTTON_LABEL_TEXT);
+    private TableColumn<Pet, String> petNameCol = new TableColumn<>(PET_NAME_LABEL_TEXT);
+    private TableColumn<Pet, LocalDate> petBirthdayCol = new TableColumn<>(PET_BIRTHDAY_LABEL_TEXT);
+    private TableColumn<Pet, LocalDate> petLastAppointmentCol = new TableColumn<>(PET_LAST_APPOINTMENT_LABEL_TEXT);
+    private TableColumn<Pet, String> snpCol = new TableColumn<>(SNP_COLUMN_LABEL_TEXT);
+    private TableColumn<Pet, String> diagnosisCol = new TableColumn<>(DIAGNOSIS_COLUMN_LABEL_TEXT);
 
 
     public TableElement(List<Pet> petList, Controller controller){
-        final int TABLE_HEIGHT = 450;
-        final int TABLE_WIDTH = 1000;
-        final int DEFAULT_ROWS_ON_PAGE_NUMBER = 17;
-        final String PET_NAME_LABEL_TEXT = "Имя питомца";
-        final String PET_BIRTHDAY_LABEL_TEXT = "Дата рождения";
-        final String PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего приёма";
-        final String SNP_COLUMN_LABEL_TEXT = "ФИО ветеринара";
-        final String DIAGNOSIS_COLUMN_LABEL_TEXT = "Диагноз";
-        final String ROWS_ON_PAGE_LABEL_TEXT = "Строчек на странице ";
-        final String TO_BEGIN_BUTTON_LABEL_TEXT = "<<";
-        final String TO_LEFT_BUTTON_LABEL_TEXT = "<";
-        final String TO_RIGHT_BUTTON_LABEL_TEXT = ">";
-        final String TO_END_BUTTON_LABEL_TEXT = ">>";
-        this.controller = controller;
-        Button toBeginButton = new Button(TO_BEGIN_BUTTON_LABEL_TEXT);
-        Button toLeftButton = new Button(TO_LEFT_BUTTON_LABEL_TEXT);
-        Button toRightButton = new Button(TO_RIGHT_BUTTON_LABEL_TEXT);
-        Button toEndButton = new Button(TO_END_BUTTON_LABEL_TEXT);
-        TableColumn<Pet, String> petNameCol = new TableColumn<>(PET_NAME_LABEL_TEXT);
-        TableColumn<Pet, LocalDate> petBirthdayCol = new TableColumn<>(PET_BIRTHDAY_LABEL_TEXT),
-                                    petLastAppointmentCol = new TableColumn<>(PET_LAST_APPOINTMENT_LABEL_TEXT);
-        TableColumn<Pet, String> snpCol   = new TableColumn<>(SNP_COLUMN_LABEL_TEXT),
-                                 diagnosisCol = new TableColumn<>(DIAGNOSIS_COLUMN_LABEL_TEXT);
-
         defaultPetList = petList;
         petObsList = FXCollections.observableArrayList(defaultPetList);
         curPetObsList = FXCollections.observableArrayList();
-
+        this.controller = controller;
         petNameCol.setCellValueFactory(new PropertyValueFactory<>("petName"));
         petNameCol.setMinWidth(100);
         petBirthdayCol.setCellValueFactory(new PropertyValueFactory<>("petBirthday"));

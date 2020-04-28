@@ -169,8 +169,9 @@ public class RequestElement {
         return this.root;
     }
 
-    public List search(Controller controller){
-        List criteriaListText, criteriaListDate;
+    public List<Pet> search(Controller controller){
+        List<String> criteriaListText;
+        List<LocalDate> criteriaListDate;
         criteriaListText = new ArrayList<String>();
         criteriaListDate = new ArrayList<LocalDate>();
         criteriaListDate.add(criteria1DatePicker.getValue());

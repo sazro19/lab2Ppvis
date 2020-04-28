@@ -9,7 +9,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.awt.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -135,9 +134,9 @@ public class Controller {
         }
     }
 
-    public List search(String selectedItem, List<String> criteriaListText, List<LocalDate> criteriaListDate){
+    public List<Pet> search(String selectedItem, List<String> criteriaListText, List<LocalDate> criteriaListDate){
         List<Pet> petList = getPetList();
-        List                resultList;
+        List<Pet> resultList;
         resultList = new ArrayList<Pet>();
         criteria criteriaForSelection = criteria.getCriteriaByName(selectedItem);
         switch (criteriaForSelection){
@@ -174,24 +173,24 @@ public class Controller {
 
         return resultList;
     }
-    enum criteria {
+    public enum criteria {
         CRITERIA_1("Дата последнего приема и ФИО ветеринара"),
         CRITERIA_2("Имя питомца и дата рождения"),
         CRITERIA_3("По фразе из диагноза");
-        private final String name;
+        private final String value;
 
-        criteria(String name) {
-            this.name = name;
+        criteria(String value) {
+            this.value = value;
         }
 
-        public String getName() {
-            return name;
+        public String getValue() {
+            return value;
         }
 
         public static criteria getCriteriaByName(String name) {
             criteria res = null;
             for (criteria x : values()) {
-                if (x.getName().equals(name)) {
+                if (x.getValue().equals(name)) {
                      res = x;
                 }
             }
@@ -253,7 +252,7 @@ public class Controller {
 
         refreshPagination(petObsList);
     }
-    
+
     private void refreshPagination(ObservableList<Pet> petObsList){
         numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
         pagination = currentPage + "/" + numberOfPages;

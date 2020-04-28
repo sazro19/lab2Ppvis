@@ -20,7 +20,28 @@ public class View {
     public enum WindowType {
         DELETE, SEARCH
     }
-
+    public enum INIT_WINDOW_LABEL {
+        FILE_MENU_LABEL_TEXT("Файл"),
+        EDIT_MENU_LABEL_TEXT("Редактировать"),
+        OPEN_DOC_MENU_ITEM_LABEL_TEXT("Открыть документ"),
+        SAVE_DOC_MENU_ITEM_LABEL_TEXT("Сохранить документ"),
+        ADD_ITEM_MENU_ITEM_LABEL_TEXT("Добавить строчки"),
+        SEARCH_ITEMS_MENU_ITEM_LABEL_TEXT("Искать строчки"),
+        DELETE_ITEMS_MENU_ITEM_LABEL_TEXT("Удалить строчки"),
+        CLOSE_APP_MENU_ITEM_LABEL_TEXT("Выход"),
+        OPEN_DOC_BUTTON_LABEL_TEXT("Открыть документ"),
+        SAVE_DOC_BUTTON_LABEL_TEXT("Сохранить документ"),
+        ADD_ITEMS_BUTTON_LABEL_TEXT("Добавить строчки"),
+        SEARCH_ITEMS_BUTTON_LABEL_TEXT("Искать строчки"),
+        DELETE_ITEMS_BUTTON_LABEL_TEXT("Удалить строчки");
+        private final String value;
+        INIT_WINDOW_LABEL(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
 	public View(Controller controller) {
         final int    STAGE_WIDTH  = 1000,
                      STAGE_HEIGHT = 650;
@@ -36,33 +57,20 @@ public class View {
 	}
 
 	private void initWindow(){
-        final String FILE_MENU_LABEL_TEXT = "Файл";
-        final String EDIT_MENU_LABEL_TEXT = "Редактировать";
-        final String OPEN_DOC_MENU_ITEM_LABEL_TEXT = "Открыть документ";
-        final String SAVE_DOC_MENU_ITEM_LABEL_TEXT = "Сохранить документ";
-        final String ADD_ITEM_MENU_ITEM_LABEL_TEXT = "Добавить строчки";
-        final String SEARCH_ITEMS_MENU_ITEM_LABEL_TEXT = "Искать строчки";
-        final String DELETE_ITEMS_MENU_ITEM_LABEL_TEXT = "Удалить строчки";
-        final String CLOSE_APP_MENU_ITEM_LABEL_TEXT = "Выход";
-        final String OPEN_DOC_BUTTON_LABEL_TEXT = "Открыть документ";
-        final String SAVE_DOC_BUTTON_LABEL_TEXT = "Сохранить документ";
-        final String ADD_ITEMS_BUTTON_LABEL_TEXT = "Добавить строчки";
-        final String SEARCH_ITEMS_BUTTON_LABEL_TEXT = "Искать строчки";
-        final String DELETE_ITEMS_BUTTON_LABEL_TEXT = "Удалить строчки";
-        MenuItem openDocMenuItem = new MenuItem(OPEN_DOC_MENU_ITEM_LABEL_TEXT);
-        MenuItem saveMenuItem = new MenuItem(SAVE_DOC_MENU_ITEM_LABEL_TEXT);
-        MenuItem addItemsMenuItem = new MenuItem(ADD_ITEM_MENU_ITEM_LABEL_TEXT);
-        MenuItem searchItemsMenuItem = new MenuItem(SEARCH_ITEMS_MENU_ITEM_LABEL_TEXT);
-        MenuItem deleteItemsMenuItem = new MenuItem(DELETE_ITEMS_MENU_ITEM_LABEL_TEXT);
-        MenuItem closeAppMenuItem  = new MenuItem(CLOSE_APP_MENU_ITEM_LABEL_TEXT);
-        Menu fileMenu = new Menu(FILE_MENU_LABEL_TEXT);
-        Menu editMenu = new Menu(EDIT_MENU_LABEL_TEXT);
+        MenuItem openDocMenuItem = new MenuItem(INIT_WINDOW_LABEL.OPEN_DOC_MENU_ITEM_LABEL_TEXT.getValue());
+        MenuItem saveMenuItem = new MenuItem(INIT_WINDOW_LABEL.SAVE_DOC_MENU_ITEM_LABEL_TEXT.getValue());
+        MenuItem addItemsMenuItem = new MenuItem(INIT_WINDOW_LABEL.ADD_ITEM_MENU_ITEM_LABEL_TEXT.getValue());
+        MenuItem searchItemsMenuItem = new MenuItem(INIT_WINDOW_LABEL.SEARCH_ITEMS_MENU_ITEM_LABEL_TEXT.getValue());
+        MenuItem deleteItemsMenuItem = new MenuItem(INIT_WINDOW_LABEL.DELETE_ITEMS_MENU_ITEM_LABEL_TEXT.getValue());
+        MenuItem closeAppMenuItem  = new MenuItem(INIT_WINDOW_LABEL.CLOSE_APP_MENU_ITEM_LABEL_TEXT.getValue());
+        Menu fileMenu = new Menu(INIT_WINDOW_LABEL.FILE_MENU_LABEL_TEXT.getValue());
+        Menu editMenu = new Menu(INIT_WINDOW_LABEL.EDIT_MENU_LABEL_TEXT.getValue());
         MenuBar menuBar = new MenuBar();
-        Button openDocButton = new Button(OPEN_DOC_BUTTON_LABEL_TEXT);
-        Button saveDocButton = new Button(SAVE_DOC_BUTTON_LABEL_TEXT);
-        Button addItemsButton = new Button(ADD_ITEMS_BUTTON_LABEL_TEXT);
-        Button searchItemsButton = new Button(SEARCH_ITEMS_BUTTON_LABEL_TEXT);
-        Button deleteItemsButton = new Button(DELETE_ITEMS_BUTTON_LABEL_TEXT);
+        Button openDocButton = new Button(INIT_WINDOW_LABEL.OPEN_DOC_BUTTON_LABEL_TEXT.getValue());
+        Button saveDocButton = new Button(INIT_WINDOW_LABEL.SAVE_DOC_BUTTON_LABEL_TEXT.getValue());
+        Button addItemsButton = new Button(INIT_WINDOW_LABEL.ADD_ITEMS_BUTTON_LABEL_TEXT.getValue());
+        Button searchItemsButton = new Button(INIT_WINDOW_LABEL.SEARCH_ITEMS_BUTTON_LABEL_TEXT.getValue());
+        Button deleteItemsButton = new Button(INIT_WINDOW_LABEL.DELETE_ITEMS_BUTTON_LABEL_TEXT.getValue());
         ToolBar instruments;
 
         fileMenu.getItems().addAll(
