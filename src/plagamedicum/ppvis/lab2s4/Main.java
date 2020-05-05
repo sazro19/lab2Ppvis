@@ -13,9 +13,9 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage mainStage) {
-		Pet 	   model 	  = new Pet();
+		Pet model = new Pet();
 		Controller controller = new Controller(model);
-		View view 	  = new View(controller);
+		View view = new View(controller);
 		
 		mainStage = view.getStage();
 		mainStage.show();
