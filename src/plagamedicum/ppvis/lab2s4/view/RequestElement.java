@@ -127,8 +127,8 @@ public class RequestElement {
     }
 
     private void switchPreset(){
-        final int CRITERIA_1_FIELD_NUMBER = 4,
-                CRITERIA_2_FIELD_NUMBER = 2;
+        final int CRITERIA_1_FIELD_NUMBER = 4;
+        final int CRITERIA_2_FIELD_NUMBER = 2;
 
 
         grid.getChildren().clear();
