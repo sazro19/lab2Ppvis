@@ -151,14 +151,14 @@ public class View {
     }
 
 	private void addItems(){
-        final String WINDOW_TITLE_TEXT = "Добавить строчки: ";
-        final String PET_NAME_LABEL_TEXT = "Имя питомца";
-        final String PET_BIRTHDAY_LABEL_TEXT = "Дата рождения";
-        final String PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего посещения";
-        final String SURNAME_LABEL_TEXT = "Фамилия ветеринара: ";
-        final String NAME_LABEL_TEXT = "Имя ветеринара: ";
-        final String PATRONYM_LABEL_TEXT = "Отчество ветеринара: ";
-        final String GROUP_LABEL_TEXT = "Диагноз: ";
+        final String WINDOW_TITLE_TEXT = "Добавить строчки";
+        final String PET_NAME_LABEL_TEXT = "Имя питомца:";
+        final String PET_BIRTHDAY_LABEL_TEXT = "Дата рождения:";
+        final String PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего посещения:";
+        final String SURNAME_LABEL_TEXT = "Фамилия ветеринара:";
+        final String NAME_LABEL_TEXT = "Имя ветеринара:";
+        final String PATRONYM_LABEL_TEXT = "Отчество ветеринара:";
+        final String GROUP_LABEL_TEXT = "Диагноз:";
 
         TextField petNameField = new TextField();
         TextField surnameField = new TextField();

@@ -84,7 +84,7 @@ public class RequestElement {
         this.root = new VBox();
         if(windowType == View.WindowType.SEARCH){
             criteriaChooser.getChildren().addAll(
-                    new Label("Критерий поиска: "),
+                    new Label("Критерий поиска:"),
                     criteriaComBox,
                     searchButton
             );
@@ -173,12 +173,12 @@ public class RequestElement {
     }
 
     private void initCriteriaLists(){
-        final String SURNAME_LABEL_TEXT       = "Фамилия ветеринара: ",
-                NAME_LABEL_TEXT          = "Имя ветеринара:",
-                PATRONYM_LABEL_TEXT      = "Прозвище ветеринара",
-                DATE_BIRTH_LABEL_TEXT    = "Дата рождения:",
-                PET_NAME_LABEL_TEXT      = "Имя питомца: ",
-                DATE_OF_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего приема: ";
+        final String SURNAME_LABEL_TEXT = "Фамилия ветеринара: ";
+        final String NAME_LABEL_TEXT = "Имя ветеринара:";
+        final String PATRONYM_LABEL_TEXT = "Прозвище ветеринара:";
+        final String DATE_BIRTH_LABEL_TEXT = "Дата рождения:";
+        final String PET_NAME_LABEL_TEXT = "Имя питомца:";
+        final String DATE_OF_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего приема:";
 
         criteria1LabelList.add(new Label(DATE_OF_LAST_APPOINTMENT_LABEL_TEXT));
         criteria1LabelList.add(new Label(SURNAME_LABEL_TEXT));
@@ -198,8 +198,8 @@ public class RequestElement {
     public List<Pet> search(Controller controller){
         List<String> criteriaListText;
         List<LocalDate> criteriaListDate;
-        criteriaListText = new ArrayList<String>();
-        criteriaListDate = new ArrayList<LocalDate>();
+        criteriaListText = new ArrayList<>();
+        criteriaListDate = new ArrayList<>();
         criteriaListDate.add(criteria1DatePicker.getValue());
         criteriaListText.add(criteria1FieldList.get(0).getText());
         criteriaListText.add(criteria1FieldList.get(1).getText());
