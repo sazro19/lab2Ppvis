@@ -25,8 +25,8 @@ public class Controller {
     private int rowsOnPage;
     private int currentPage = 1;
     private int numberOfPages;
-    String pagination;
-    String itemsCount;
+    private String pagination;
+    private String itemsCount;
 
     public Controller(Pet model){
         this.model = model;
@@ -37,9 +37,7 @@ public class Controller {
     }
 
     public void addPet(String petName, LocalDate petBirthday, LocalDate petLast, String surname, String name, String patronym, String diagnosis){
-        model.addPet(
-                new Pet(petName, petBirthday, petLast, new snpOfVeterinarian(surname, name, patronym), diagnosis)
-        );
+        model.addPet(new Pet(petName, petBirthday, petLast, new snpOfVeterinarian(surname, name, patronym), diagnosis));
     }
 
     public void openDoc(File file) {
@@ -137,14 +135,14 @@ public class Controller {
     public List<Pet> search(String selectedItem, List<String> criteriaListText, List<LocalDate> criteriaListDate){
         List<Pet> petList = getPetList();
         List<Pet> resultList;
-        resultList = new ArrayList<Pet>();
+        resultList = new ArrayList<>();
         criteria criteriaForSelection = criteria.getCriteriaByName(selectedItem);
         switch (criteriaForSelection){
             case CRITERIA_1:
                 final LocalDate LAST_APPOINTMENT = criteriaListDate.get(0);
-                final String SURNAME = criteriaListText.get(0),
-                             NAME    = criteriaListText.get(1),
-                             PATRONYM = criteriaListText.get(2);
+                final String SURNAME = criteriaListText.get(0);
+                final String NAME = criteriaListText.get(1);
+                final String PATRONYM = criteriaListText.get(2);
                 for(Pet pet:petList) {
                     if (pet.getSurname().equals(SURNAME) && pet.getName().equals(NAME) && pet.getPatronym().equals(PATRONYM) && pet.getPetLastAppointment().equals(LAST_APPOINTMENT)) {
                         resultList.add(pet);
@@ -173,6 +171,7 @@ public class Controller {
 
         return resultList;
     }
+
     public enum criteria {
         CRITERIA_1("Дата последнего приема и ФИО ветеринара"),
         CRITERIA_2("Имя питомца и дата рождения"),
@@ -187,16 +186,17 @@ public class Controller {
             return value;
         }
 
-        public static criteria getCriteriaByName(String name) {
+        public static criteria getCriteriaByName(String value) {
             criteria res = null;
             for (criteria x : values()) {
-                if (x.getValue().equals(name)) {
+                if (x.getValue().equals(value)) {
                      res = x;
                 }
             }
             return res;
         }
     }
+
     public void delete(List<Pet> indexList){
         for(Pet pet:indexList){
             getPetList().remove(pet);
@@ -258,9 +258,11 @@ public class Controller {
         pagination = currentPage + "/" + numberOfPages;
         itemsCount = "/" + petObsList.size() + "/";
     }
+
     public String getPagination() {
         return pagination;
     }
+
     public String getItemsCount() {
         return itemsCount;
     }

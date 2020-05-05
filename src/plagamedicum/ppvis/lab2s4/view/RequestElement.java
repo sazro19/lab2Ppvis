@@ -14,34 +14,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestElement {
-    final String CRITERIA_1 = "Дата последнего приема и ФИО ветеринара",
-            CRITERIA_2 = "Имя питомца и дата рождения",
-            CRITERIA_3 = "По фразе из диагноза";
-    private String       selectedItem;
+    private String selectedItem;
     private ComboBox criteriaComBox;
     private Button searchButton;
     private TableElement tableElement;
     private GridPane grid;
-    private Pane criteriaChooser,
-            root;
-    private List<Label> criteria1LabelList,
-            criteria2LabelList;
-    private Label           criteria3Label;
+    private Pane criteriaChooser;
+    private Pane root;
+    private List<Label> criteria1LabelList;
+    private List<Label> criteria2LabelList;
+    private Label criteria3Label;
     private List<TextField> criteria1FieldList;
-    private TextField       criteria2TextField,
-            criteria3TextField;
-    private DatePicker criteria2DatePicker,
-            criteria1DatePicker;
+    private TextField criteria2TextField;
+    private TextField criteria3TextField;
+    private DatePicker criteria2DatePicker;
+    private DatePicker criteria1DatePicker;
+
+    public enum criteriaForRequesting {
+        CRITERIA_1("Дата последнего приема и ФИО ветеринара"),
+        CRITERIA_2("Имя питомца и дата рождения"),
+        CRITERIA_3("По фразе из диагноза");
+        private final String value;
+
+        criteriaForRequesting(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public static criteriaForRequesting getCriteriaByName(String value) {
+            criteriaForRequesting res = null;
+            for (criteriaForRequesting x : values()) {
+                if (x.getValue().equals(value)) {
+                    res = x;
+                }
+            }
+            return res;
+        }
+    }
 
     public RequestElement(View.WindowType windowType, Controller controller){
+        criteriaForRequesting criteria1 = criteriaForRequesting.CRITERIA_1;
+        criteriaForRequesting criteria2 = criteriaForRequesting.CRITERIA_2;
+        criteriaForRequesting criteria3 = criteriaForRequesting.CRITERIA_3;
         criteriaComBox = new ComboBox();
         criteriaComBox.getItems().addAll(
-                CRITERIA_1,
-                CRITERIA_2,
-                CRITERIA_3
+                criteria1.getValue(),
+                criteria2.getValue(),
+                criteria3.getValue()
         );
-        criteriaComBox.setValue(CRITERIA_1);
-        searchButton    = new Button("Найти");
+        criteriaComBox.setValue(criteria1.getValue());
+        searchButton = new Button("Найти");
         criteriaChooser = new HBox();
 
         criteria1LabelList = new ArrayList<>();
@@ -51,9 +76,9 @@ public class RequestElement {
         criteria2TextField = new TextField();
         criteria3TextField = new TextField();
         criteria2DatePicker = new DatePicker();
-        criteria3Label     = new Label("Фраза из диагноза");
+        criteria3Label = new Label("Фраза из диагноза");
         initCriteriaLists();
-        grid              = new GridPane();
+        grid = new GridPane();
         switchPreset();
         tableElement = new TableElement(new ArrayList<>(), controller);
         this.root = new VBox();
@@ -108,7 +133,8 @@ public class RequestElement {
 
         grid.getChildren().clear();
         selectedItem = criteriaComBox.getSelectionModel().getSelectedItem().toString();
-        switch (selectedItem){
+        criteriaForRequesting criteria = criteriaForRequesting.getCriteriaByName(selectedItem);
+        switch (criteria){
             case CRITERIA_1:
                 for(int i = 0; i < CRITERIA_1_FIELD_NUMBER; i++){
                     if(i == 0) {

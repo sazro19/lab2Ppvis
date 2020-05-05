@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocOpener {
-    private String        petName;
-    private LocalDate     petBirthday;
-    private LocalDate     petLastAppointment;
+    private String petName;
+    private LocalDate petBirthday;
+    private LocalDate petLastAppointment;
     private snpOfVeterinarian snp;
-    private String        diagnosis;
-    private List<Pet>     petList;
+    private String diagnosis;
+    private List<Pet> petList;
 
     public List<Pet> openDoc (File file) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory parserFactory;
@@ -31,9 +31,9 @@ public class DocOpener {
 
         petList = new ArrayList<>();
 
-        handler       = new XMLHandler();
+        handler = new XMLHandler();
         parserFactory = SAXParserFactory.newInstance();
-        parser        = parserFactory.newSAXParser();
+        parser = parserFactory.newSAXParser();
         parser.parse(file, handler);
         return petList;
     }

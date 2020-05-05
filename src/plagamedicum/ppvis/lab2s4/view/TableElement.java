@@ -87,7 +87,7 @@ public class TableElement {
         itemsCountLabel = new Label("/" + petObsList.size() + "/");
         rowsOnPageField = new TextField();
         rowsOnPageField.setText(String.valueOf(DEFAULT_ROWS_ON_PAGE_NUMBER));
-        resetCountPages   = new Button("Обновить количество строк на странице");
+        resetCountPages = new Button("Обновить количество строк на странице");
         pagination = new ToolBar(
                 itemsCountLabel,
                 new Separator(),
@@ -111,28 +111,32 @@ public class TableElement {
         table.setItems(curPetObsList);
         controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
         tableElement = new VBox();
-        tableElement.getChildren().addAll(table,
-                                          pagination);
+        tableElement.getChildren().addAll(table, pagination);
 
-        resetCountPages.setOnAction(ae -> {controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
-                                           paginationLabel.setText(controller.getPagination());
-                                           itemsCountLabel.setText(controller.getItemsCount());
+        resetCountPages.setOnAction(ae -> {
+            controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
+            paginationLabel.setText(controller.getPagination());
+            itemsCountLabel.setText(controller.getItemsCount());
         });
-        toBeginButton.setOnAction(ae -> {controller.goBegin(petObsList, curPetObsList);
-                                         paginationLabel.setText(controller.getPagination());
-                                         itemsCountLabel.setText(controller.getItemsCount());
+        toBeginButton.setOnAction(ae -> {
+            controller.goBegin(petObsList, curPetObsList);
+            paginationLabel.setText(controller.getPagination());
+            itemsCountLabel.setText(controller.getItemsCount());
         });
-        toLeftButton.setOnAction(ae -> {controller.goLeft(petObsList, curPetObsList);
-                                        paginationLabel.setText(controller.getPagination());
-                                        itemsCountLabel.setText(controller.getItemsCount());
+        toLeftButton.setOnAction(ae -> {
+            controller.goLeft(petObsList, curPetObsList);
+            paginationLabel.setText(controller.getPagination());
+            itemsCountLabel.setText(controller.getItemsCount());
         });
-        toRightButton.setOnAction(ae -> {controller.goRight(petObsList, curPetObsList);
-                                         paginationLabel.setText(controller.getPagination());
-                                         itemsCountLabel.setText(controller.getItemsCount());
+        toRightButton.setOnAction(ae -> {
+            controller.goRight(petObsList, curPetObsList);
+            paginationLabel.setText(controller.getPagination());
+            itemsCountLabel.setText(controller.getItemsCount());
         });
-        toEndButton.setOnAction(ae -> {controller.goEnd(petObsList, curPetObsList);
-                                       paginationLabel.setText(controller.getPagination());
-                                       itemsCountLabel.setText(controller.getItemsCount());
+        toEndButton.setOnAction(ae -> {
+            controller.goEnd(petObsList, curPetObsList);
+            paginationLabel.setText(controller.getPagination());
+            itemsCountLabel.setText(controller.getItemsCount());
         });
     }
 
@@ -152,59 +156,4 @@ public class TableElement {
         petObsList = FXCollections.observableArrayList(list);
         controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
     }
-
-    /*private void setRowsOnPage(){
-        rowsOnPage = Integer.parseInt(rowsOnPageField.getText());
-        currentPage = 1;
-        refreshPage();
-    }
-
-    private void goBegin(){
-        currentPage = 1;
-        refreshPage();
-    }
-
-    private void goLeft(){
-        if(currentPage > 1){
-            currentPage--;
-        }
-        refreshPage();
-    }
-
-    private void goRight(){
-        if(currentPage < numberOfPages){
-            currentPage++;
-        }
-        refreshPage();
-    }
-
-    private void goEnd(){
-        currentPage = numberOfPages;
-        refreshPage();
-    }
-
-    private void refreshPage(){
-        int fromIndex = (currentPage - 1) * rowsOnPage,
-            toIndex   =  currentPage      * rowsOnPage;
-
-        if(toIndex > petObsList.size()){
-            toIndex = petObsList.size();
-        }
-
-        curPetObsList.clear();
-        curPetObsList.addAll(
-                petObsList.subList(
-                        fromIndex,
-                        toIndex
-                )
-        );
-
-        refreshPaginationLabel();
-    }
-
-    private void refreshPaginationLabel(){
-        numberOfPages = (petObsList.size() - 1) / rowsOnPage + 1;
-        paginationLabel.setText(currentPage + "/" + numberOfPages);
-        itemsCountLabel.setText("/" + petObsList.size() + "/");
-    }*/
 }

@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Pet {
 	private List<Pet> petList;
-	private String     petName;
-	private LocalDate  petBirthday;
-	private LocalDate  petLastAppointment;
+	private String petName;
+	private LocalDate petBirthday;
+	private LocalDate petLastAppointment;
 	private snpOfVeterinarian snp;
-	private String     diagnosis;
+	private String diagnosis;
 
 	public Pet(String petName, LocalDate petBirthday, LocalDate petLastAppointment, snpOfVeterinarian snp, String diagnosis){
 		this.petName = petName;

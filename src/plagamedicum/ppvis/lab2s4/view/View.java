@@ -11,11 +11,11 @@ import javafx.stage.Stage;
 import plagamedicum.ppvis.lab2s4.Controller.Controller;
 
 public class View {
-    private Scene        scene;
+    private Scene scene;
 	private TableElement tableElement;
-    private Controller   controller;
-    private Stage        stage;
-    private VBox         root;
+    private Controller controller;
+    private Stage stage;
+    private VBox root;
     private RequestElement requestElement;
     public enum WindowType {
         DELETE, SEARCH
@@ -43,8 +43,8 @@ public class View {
         }
     }
 	public View(Controller controller) {
-        final int    STAGE_WIDTH  = 1000,
-                     STAGE_HEIGHT = 650;
+        final int STAGE_WIDTH  = 1000;
+        final int STAGE_HEIGHT = 650;
         final String STAGE_TITLE_TEXT = "Lab2";
 
         this.controller = controller;
@@ -144,34 +144,32 @@ public class View {
         FileChooser saveDocChooser = new FileChooser();
 
         saveDocChooser.setTitle("Сохранить документ");
-        saveDocChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Все файлы", "*.*"),
-                new FileChooser.ExtensionFilter("XML-документ", "*.xml")
-        );
+        saveDocChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Все файлы", "*.*"),
+                                                    new FileChooser.ExtensionFilter("XML-документ", "*.xml"));
 
         controller.saveDoc(saveDocChooser.showSaveDialog(stage));
     }
 
 	private void addItems(){
-        final String WINDOW_TITLE_TEXT      = "Добавить строчки: ",
-                     PET_NAME_LABEL_TEXT     = "Имя питомца",
-                     PET_BIRTHDAY_LABEL_TEXT = "Дата рождения",
-                     PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего посещения",
-                     SURNAME_LABEL_TEXT     = "Фамилия ветеринара: ",
-                     NAME_LABEL_TEXT        = "Имя ветеринара: ",
-                     PATRONYM_LABEL_TEXT    = "Отчество ветеринара: ",
-                     GROUP_LABEL_TEXT       = "Диагноз: ";
+        final String WINDOW_TITLE_TEXT = "Добавить строчки: ";
+        final String PET_NAME_LABEL_TEXT = "Имя питомца";
+        final String PET_BIRTHDAY_LABEL_TEXT = "Дата рождения";
+        final String PET_LAST_APPOINTMENT_LABEL_TEXT = "Дата последнего посещения";
+        final String SURNAME_LABEL_TEXT = "Фамилия ветеринара: ";
+        final String NAME_LABEL_TEXT = "Имя ветеринара: ";
+        final String PATRONYM_LABEL_TEXT = "Отчество ветеринара: ";
+        final String GROUP_LABEL_TEXT = "Диагноз: ";
 
-        TextField    petNameField   = new TextField(),
-                     surnameField   = new TextField(),
-                     nameField      = new TextField(),
-                     patronymField  = new TextField(),
-                     diagnosisField = new TextField();
-        DatePicker   birthdayField  = new DatePicker(),
-                     lastAppointmentField = new DatePicker();
+        TextField petNameField = new TextField();
+        TextField surnameField = new TextField();
+        TextField nameField = new TextField();
+        TextField patronymField = new TextField();
+        TextField diagnosisField = new TextField();
+        DatePicker birthdayField = new DatePicker();
+        DatePicker lastAppointmentField = new DatePicker();
 
-	    GridPane     root           = new GridPane();
-        Alert        addItemWindow;
+	    GridPane root = new GridPane();
+        Alert addItemWindow;
 
         root.addRow(0,
                 new Label(PET_NAME_LABEL_TEXT),
@@ -257,9 +255,9 @@ public class View {
 
     private void createDeleteInfoWindow(String deleteInfo){
         final String CLOSE_BUTTON_LABEL_TEXT = "ОК";
-        ButtonType   closeButton       = new ButtonType(CLOSE_BUTTON_LABEL_TEXT);
-	    Alert window  = new Alert(Alert.AlertType.NONE);
-	    VBox  vertice = new VBox();
+        ButtonType closeButton = new ButtonType(CLOSE_BUTTON_LABEL_TEXT);
+	    Alert window = new Alert(Alert.AlertType.NONE);
+	    VBox vertice = new VBox();
 
 	    vertice.getChildren().add(new Label("Удалено " + deleteInfo + " строчек."));
 	    window.getDialogPane().setContent(vertice);
@@ -269,8 +267,8 @@ public class View {
 
     private Alert createEmptyCloseableDialog(){
         final String CLOSE_BUTTON_LABEL_TEXT = "Далее";
-        ButtonType   closeButton       = new ButtonType(CLOSE_BUTTON_LABEL_TEXT);
-        Alert        window            = new Alert(Alert.AlertType.NONE);
+        ButtonType closeButton = new ButtonType(CLOSE_BUTTON_LABEL_TEXT);
+        Alert window = new Alert(Alert.AlertType.NONE);
 
         window.getButtonTypes().addAll(closeButton);
         return window;
