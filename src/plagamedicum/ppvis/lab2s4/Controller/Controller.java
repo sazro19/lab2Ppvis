@@ -235,8 +235,8 @@ public class Controller {
     }
 
     private void refreshPage(ObservableList<Pet> petObsList, ObservableList<Pet> curPetObsList){
-        int fromIndex = (currentPage - 1) * rowsOnPage,
-                toIndex   =  currentPage      * rowsOnPage;
+        int fromIndex = (currentPage - 1) * rowsOnPage;
+        int toIndex   =  currentPage * rowsOnPage;
 
         if(toIndex > petObsList.size()){
             toIndex = petObsList.size();
@@ -263,8 +263,5 @@ public class Controller {
         return pagination;
     }
 
-    public String getItemsCount() {
-        return itemsCount;
-    }
 }
 

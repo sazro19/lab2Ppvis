@@ -222,7 +222,7 @@ public class View {
 
     private void searchItems(){
         final String WINDOW_TITLE_TEXT = "Искать строчки";
-        Alert        searchItemsWindow;
+        Alert searchItemsWindow;
         requestElement = new RequestElement(WindowType.SEARCH, controller);
 
         searchItemsWindow = createEmptyCloseableDialog();

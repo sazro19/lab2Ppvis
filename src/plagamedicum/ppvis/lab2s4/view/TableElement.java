@@ -116,27 +116,22 @@ public class TableElement {
         resetCountPages.setOnAction(ae -> {
             controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
             paginationLabel.setText(controller.getPagination());
-            itemsCountLabel.setText(controller.getItemsCount());
         });
         toBeginButton.setOnAction(ae -> {
             controller.goBegin(petObsList, curPetObsList);
             paginationLabel.setText(controller.getPagination());
-            itemsCountLabel.setText(controller.getItemsCount());
         });
         toLeftButton.setOnAction(ae -> {
             controller.goLeft(petObsList, curPetObsList);
             paginationLabel.setText(controller.getPagination());
-            itemsCountLabel.setText(controller.getItemsCount());
         });
         toRightButton.setOnAction(ae -> {
             controller.goRight(petObsList, curPetObsList);
             paginationLabel.setText(controller.getPagination());
-            itemsCountLabel.setText(controller.getItemsCount());
         });
         toEndButton.setOnAction(ae -> {
             controller.goEnd(petObsList, curPetObsList);
             paginationLabel.setText(controller.getPagination());
-            itemsCountLabel.setText(controller.getItemsCount());
         });
     }
 
@@ -150,10 +145,14 @@ public class TableElement {
 
     public void resetToDefaultItems(){
         setObservableList(defaultPetList);
+        itemsCountLabel.setText("/" + petObsList.size() + "/");
+        paginationLabel.setText(controller.getPagination());
     }
 
     public void setObservableList(List<Pet> list){
         petObsList = FXCollections.observableArrayList(list);
         controller.setRowsOnPage(rowsOnPageField.getText(), petObsList, curPetObsList);
+        itemsCountLabel.setText("/" + petObsList.size() + "/");
+        paginationLabel.setText(controller.getPagination());
     }
 }
