@@ -136,9 +136,9 @@ public class Controller {
         List<Pet> petList = getPetList();
         List<Pet> resultList;
         resultList = new ArrayList<>();
-        criteria criteriaForSelection = criteria.getCriteriaByName(selectedItem);
+        SearchCriteria criteriaForSelection = SearchCriteria.getCriteriaByName(selectedItem);
         switch (criteriaForSelection){
-            case CRITERIA_1:
+            case LAST_DATE_AND_SNP_CRITERIA:
                 final LocalDate LAST_APPOINTMENT = criteriaListDate.get(0);
                 final String SURNAME = criteriaListText.get(0);
                 final String NAME = criteriaListText.get(1);
@@ -149,7 +149,7 @@ public class Controller {
                     }
                 }
                 break;
-            case CRITERIA_2:
+            case PET_NAME_AND_BIRTHDAY_CRITERIA:
                 final LocalDate BIRTHDAY = criteriaListDate.get(1);
                 final String PET_NAME = criteriaListText.get(3);
                 for(Pet pet:petList) {
@@ -158,7 +158,7 @@ public class Controller {
                     }
                 }
                 break;
-            case CRITERIA_3:
+            case FRAZE_FROM_DIAGNOSIS_CRITERIA:
                 frazeChecker = new FrazeChecker();
                 final String  FRAZE   = criteriaListText.get(4);
                 for(Pet pet:petList) {
@@ -172,7 +172,7 @@ public class Controller {
         return resultList;
     }
 
-    public enum criteria {
+    /*public enum criteria {
         CRITERIA_1("Дата последнего приема и ФИО ветеринара"),
         CRITERIA_2("Имя питомца и дата рождения"),
         CRITERIA_3("По фразе из диагноза");
@@ -195,7 +195,7 @@ public class Controller {
             }
             return res;
         }
-    }
+    }*/
 
     public void delete(List<Pet> indexList){
         for(Pet pet:indexList){
